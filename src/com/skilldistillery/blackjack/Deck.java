@@ -11,6 +11,11 @@ public class Deck {
 		cards = createDeck();
 	}
 
+	@Override
+	public String toString() {
+		return " " + cards + "\n";
+	}
+
 	private List<Card> createDeck() {
 		List<Card> deck = new ArrayList<>(52);
 		for (Suit s : Suit.values()) {

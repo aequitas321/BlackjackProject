@@ -13,8 +13,15 @@ public int getValue() {
 	return rank.getValue();
 }
 
+	public Suit getSuit() {
+		return suit;
+	}
 
-@Override
+	public Rank getRank() {
+		return rank;
+	}
+
+	@Override
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
