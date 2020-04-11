@@ -1,13 +1,22 @@
 package com.skilldistillery.blackjack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Hand {
-    protected List<Card> hand;
+    protected ArrayList<Card> hand = new ArrayList<>();
 
     //Constructor
    public Hand() {
 
+    }
+
+    public List<Card> getHand() {
+        return hand;
+    }
+
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
     }
 
     //Methods

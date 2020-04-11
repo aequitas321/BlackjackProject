@@ -3,18 +3,21 @@ package com.skilldistillery.blackjack;
 import java.util.Objects;
 
 public class Dealer{
-    private BlackjackHand hand;
+    private BlackjackHand dealerHand;
     private Deck deck;
 
 
     public Dealer() {
         deck = new Deck();
-        hand = new BlackjackHand();
+        dealerHand = new BlackjackHand();
     }
 
-    public void deal(){
+    public void deal(Hand hand){
         hand.addCard(deck.dealCard());
-        hand.addCard(deck.dealCard());
+    }
+
+    public void dealToPlayer(){
+
     }
 
     public Deck getDeck() {
@@ -31,21 +34,18 @@ public class Dealer{
         if (o == null || getClass() != o.getClass()) return false;
         Dealer dealer = (Dealer) o;
         return Objects.equals(deck, dealer.deck) &&
-                Objects.equals(hand, dealer.hand);
+                Objects.equals(dealerHand, dealer.dealerHand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(deck, hand);
+        return Objects.hash(deck, dealerHand);
     }
 
     public BlackjackHand getHand() {
-        return hand;
+        return dealerHand;
     }
 
-    public void setHand(BlackjackHand hand) {
-        this.hand = hand;
-    }
 
 
 }

@@ -1,10 +1,13 @@
 package com.skilldistillery.blackjack;
 
+import java.util.Scanner;
+
 public class BlackjackApp {
+
     public static void main(String[] args) {
-      Deck deck = new Deck();
-        System.out.println(deck.toString());
-        deck.shuffle();
-        System.out.println(deck.toString());
+     BlackjackTable table1 = new BlackjackTable();
+     table1.menu();
     }
+
+
 }

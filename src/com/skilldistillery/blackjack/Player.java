@@ -3,14 +3,14 @@ package com.skilldistillery.blackjack;
 import java.util.Objects;
 
 public class Player {
-    BlackjackHand hand;
+   private BlackjackHand playerHand;
 
     public Player(){
-        hand = new BlackjackHand();
+        playerHand = new BlackjackHand();
     }
 
     public BlackjackHand getHand() {
-        return hand;
+        return playerHand;
     }
 
     @Override
@@ -18,22 +18,26 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(hand, player.hand);
+        return Objects.equals(playerHand, player.playerHand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hand);
+        return Objects.hash(playerHand);
     }
 
-    public void setHand(BlackjackHand hand) {
-        this.hand = hand;
+    public BlackjackHand getPlayerHand() {
+        return playerHand;
+    }
+
+    public void setPlayerHand(BlackjackHand playerHand) {
+        this.playerHand = playerHand;
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "hand=" + hand +
+                "hand=" + playerHand +
                 '}';
     }
 }
