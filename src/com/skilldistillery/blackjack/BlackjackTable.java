@@ -6,7 +6,7 @@ public class BlackjackTable {
     Dealer dealer = new Dealer();
     Player player1 = new Player();
 
-//    ONLY RUNS WHEN PLAYER SELECTS PLAY BLACKJACK
+    //    ONLY RUNS WHEN PLAYER SELECTS PLAY BLACKJACK
     public void run() {
         System.out.println("Dealer: Welcome to the game!");
         dealer.getDeck().shuffle();
@@ -54,8 +54,18 @@ public class BlackjackTable {
         dealer.deal(dealer.getHand());
         dealer.deal(dealer.getHand());
         if (player1.getHand().isBlackjack()) {
-
+            System.out.println(player1.getHand());
+            System.out.println(player1.getHand().getHandValue());
             System.out.println("You win");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
+            menu();
+        } else if (dealer.getHand().isBlackjack()){
+            System.out.println(dealer.getHand());
+            System.out.println(dealer.getHand().getHandValue());
+            System.out.println("Dealer wins, better luck next time.");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
             menu();
         }
     }
@@ -89,6 +99,7 @@ public class BlackjackTable {
                         if (player1.getHand().isBust()) {
                             System.out.println("You bust. Better luck next time");
                             player1.getHand().clearHand();
+                            dealer.getHand().clearHand();
                             menu();
                         }
                         break;
@@ -106,15 +117,20 @@ public class BlackjackTable {
         }
 
 //          START OF DEALER TURN
-        while (dealer.getHand().getHandValue() <= 17) {
-            System.out.println(dealer.getHand());
+       if(dealer.getHand().getHandValue() >= 17){
+           System.out.println("Dealer: " + dealer.getHand());
+           System.out.println(dealer.getHand().getHandValue());
+       }
+
+        while (dealer.getHand().getHandValue() < 17 && !dealer.getHand().isBust()) {
+            System.out.println("Dealer: " + dealer.getHand());
             System.out.println(dealer.getHand().getHandValue());
             dealer.deal(dealer.getHand());
         }
         if (dealer.getHand().isBust()) {
             System.out.println(dealer.getHand());
             System.out.println(dealer.getHand().getHandValue());
-            System.out.println("You win!!!");
+            System.out.println("Dealer bust, You win!!!");
             player1.getHand().clearHand();
             dealer.getHand().clearHand();
             menu();
@@ -122,6 +138,13 @@ public class BlackjackTable {
             System.out.println(dealer.getHand());
             System.out.println(dealer.getHand().getHandValue());
             System.out.println("You win!!!");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
+            menu();
+        } else if (player1.getHand().getHandValue() == dealer.getHand().getHandValue()){
+            System.out.println("Player: " + player1.getHand().getHandValue());
+            System.out.println("Dealer: " + dealer.getHand().getHandValue());
+            System.out.println("This hand is a tie");
             player1.getHand().clearHand();
             dealer.getHand().clearHand();
             menu();
