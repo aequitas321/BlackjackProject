@@ -12,8 +12,8 @@ public class Player {
 
 //      METHODS
     public void displayHand() {
-        System.out.println(getHand());
-        System.out.println(getHand().getHandValue());
+        System.out.println("Player hand: " + getHand());
+        System.out.println("Player hand value: " + getHand().getHandValue());
     }
 
     public BlackjackHand getHand() {

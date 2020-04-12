@@ -6,13 +6,13 @@ public class Dealer {
     private BlackjackHand dealerHand;
     private Deck deck;
 
-//      CONSTRUCTOR
+    //      CONSTRUCTOR
     public Dealer() {
         dealerHand = new BlackjackHand();
     }
 
 
-//      DEALER METHODS
+    //      DEALER METHODS
     public void deal(Hand hand) {
         hand.addCard(deck.dealCard());
     }
@@ -23,12 +23,16 @@ public class Dealer {
 
     }
 
+    public void dealerTurnDisplayDealerHand() {
+        System.out.println("Dealer hand: " + getHand());
+        System.out.println("Dealer hand value: " + getHand().getHandValue());
+    }
+
 
     public Deck getDeck() {
         deck = new Deck();
         return deck;
     }
-
 
 
     public void setDeck(Deck deck) {
