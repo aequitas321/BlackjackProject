@@ -24,7 +24,7 @@ public class Dealer {
     }
 
     public void dealerTurnDisplayDealerHand() {
-        System.out.println("Dealer hand: " + getHand());
+        System.out.print("Dealer hand: " + getHand() + "\t");
         System.out.println("Dealer hand value: " + getHand().getHandValue());
     }
 

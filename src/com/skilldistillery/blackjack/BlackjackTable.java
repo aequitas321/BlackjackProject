@@ -18,19 +18,12 @@ public class BlackjackTable {
     }
 
     //STARTS GAME AND RUNS AFTER EVERY ROUND
-    public void menu() {
+    public void gameSelect() {
         Scanner kb = new Scanner(System.in);
         boolean tryAgain = true;
         while (tryAgain)
             try {
-                System.out.println("What would you like to do?");
-                System.out.println("───────────────────────────");
-                System.out.println("\tMenu");
-                System.out.println("┍-------------------------------------------┑");
-                System.out.println("| 1) - Play Blackjack                       |");
-                System.out.println("| 2) - Quit Application                     |");
-                System.out.println("┗-------------------------------------------┙");
-                System.out.print("choice: ");
+                menu();
                 switch (kb.nextInt()) {
                     case 1:
                         run();
@@ -57,12 +50,12 @@ public class BlackjackTable {
             player1.displayHand();
             System.out.println("You win");
             clearAllHands();
-            menu();
+            gameSelect();
         } else if (dealer.getHand().isBlackjack()) {
             dealer.dealerTurnDisplayDealerHand();
             System.out.println("Dealer wins, better luck next time.");
             clearAllHands();
-            menu();
+            gameSelect();
         }
     }
 
@@ -73,12 +66,8 @@ public class BlackjackTable {
 
             try {
                 Scanner kb = new Scanner(System.in);
-                System.out.println("What would you like to do?");
-                System.out.println("┍-----------┑");
-                System.out.println("| 1) - Hit  |");
-                System.out.println("| 2) - Stay |");
-                System.out.println("┗-----------┙");
-                System.out.print("choice: ");
+
+                hitStayMenu();
 
                 switch (kb.next()) {
                     case "1":
@@ -86,7 +75,9 @@ public class BlackjackTable {
                             if (player1.getHand().getHandValue() < 21) {
                                 dealer.deal(player1.getHand());
                                 player1.displayHand();
+                                System.out.println();
                                 dealer.displayDealerHand();
+                                System.out.println();
                             } else {
                                 System.out.println("You are at 21. Hitting again would put you at bust.");
                                 selection = true;
@@ -95,7 +86,7 @@ public class BlackjackTable {
                         if (player1.getHand().isBust()) {
                             System.out.println("You bust. Better luck next time");
                             clearAllHands();
-                            menu();
+                            gameSelect();
                         }
                         break;
                     case "2":
@@ -126,23 +117,23 @@ public class BlackjackTable {
             dealer.dealerTurnDisplayDealerHand();
             System.out.println("Dealer bust, You win!!!");
             clearAllHands();
-            menu();
+            gameSelect();
         } else if (player1.getHand().getHandValue() > dealer.getHand().getHandValue()) {
             dealer.dealerTurnDisplayDealerHand();
             System.out.println("You win!!!");
             clearAllHands();
-            menu();
+            gameSelect();
         } else if (player1.getHand().getHandValue() == dealer.getHand().getHandValue()) {
             player1.displayHand();
             dealer.dealerTurnDisplayDealerHand();
             System.out.println("This hand is a tie");
             clearAllHands();
-            menu();
+            gameSelect();
         } else {
             dealer.dealerTurnDisplayDealerHand();
             System.out.println("Dealer wins, better luck next time.");
             clearAllHands();
-            menu();
+            gameSelect();
         }
 
     }
@@ -150,6 +141,26 @@ public class BlackjackTable {
     public void clearAllHands() {
         player1.getHand().clearHand();
         dealer.getHand().clearHand();
+    }
+
+    public void menu() {
+        System.out.println("What would you like to do?");
+        System.out.println("───────────────────────────");
+        System.out.println("\tMenu");
+        System.out.println("┍-------------------------------------------┑");
+        System.out.println("| 1) - Play Blackjack                       |");
+        System.out.println("| 2) - Quit Application                     |");
+        System.out.println("┗-------------------------------------------┙");
+        System.out.print("choice: ");
+    }
+
+    public void hitStayMenu() {
+        System.out.println("What would you like to do?");
+        System.out.println("┍-----------┑");
+        System.out.println("| 1) - Hit  |");
+        System.out.println("| 2) - Stay |");
+        System.out.println("┗-----------┙");
+        System.out.print("choice: ");
     }
 
 

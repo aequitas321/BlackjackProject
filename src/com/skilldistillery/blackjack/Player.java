@@ -12,7 +12,7 @@ public class Player {
 
 //      METHODS
     public void displayHand() {
-        System.out.println("Player hand: " + getHand());
+        System.out.print("Player hand: " + getHand() + "\t");
         System.out.println("Player hand value: " + getHand().getHandValue());
     }
 

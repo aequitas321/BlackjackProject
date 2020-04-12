@@ -6,7 +6,7 @@ public class BlackjackApp {
 
     public static void main(String[] args) {
         BlackjackTable table1 = new BlackjackTable();
-        table1.menu();
+        table1.gameSelect();
     }
 
 

@@ -50,6 +50,8 @@ public class Card {
 
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        return "\n-------------\n|\t" + rank + "\t|\n|\t of \t|\n|\t" + suit + "\t|\n-------------\t";
+
     }
+
 }

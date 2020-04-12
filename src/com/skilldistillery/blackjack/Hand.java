@@ -33,9 +33,11 @@ public abstract class Hand {
 
     @Override
     public String toString() {
-        return "Hand{" +
-                "hand=" + hand +
-                '}';
+        String result = " ";
+        for (int i = 0; i < hand.size(); i++){
+            result+= " " + hand.get(i);
+    }
+        return result;
     }
 
 
