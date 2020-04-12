@@ -2,27 +2,34 @@ package com.skilldistillery.blackjack;
 
 import java.util.Objects;
 
-public class Dealer{
+public class Dealer {
     private BlackjackHand dealerHand;
     private Deck deck;
 
-
+//      CONSTRUCTOR
     public Dealer() {
-        deck = new Deck();
         dealerHand = new BlackjackHand();
     }
 
-    public void deal(Hand hand){
+
+//      DEALER METHODS
+    public void deal(Hand hand) {
         hand.addCard(deck.dealCard());
     }
 
-    public void dealToPlayer(){
+
+    public void displayDealerHand() {
+        System.out.println("Dealer face up card " + getHand().getHand().get(1));
 
     }
+
 
     public Deck getDeck() {
+        deck = new Deck();
         return deck;
     }
+
+
 
     public void setDeck(Deck deck) {
         this.deck = deck;
@@ -45,7 +52,6 @@ public class Dealer{
     public BlackjackHand getHand() {
         return dealerHand;
     }
-
 
 
 }

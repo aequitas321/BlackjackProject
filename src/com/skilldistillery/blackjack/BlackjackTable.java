@@ -6,15 +6,18 @@ public class BlackjackTable {
     Dealer dealer = new Dealer();
     Player player1 = new Player();
 
+//    ONLY RUNS WHEN PLAYER SELECTS PLAY BLACKJACK
     public void run() {
         System.out.println("Dealer: Welcome to the game!");
         dealer.getDeck().shuffle();
         openingHand();
-        displayHand();
+        player1.displayHand();
+        dealer.displayDealerHand();
+        play();
 
     }
 
-
+    //STARTS GAME AND RUNS AFTER EVERY ROUND
     public void menu() {
         Scanner kb = new Scanner(System.in);
         boolean tryAgain = true;
@@ -50,32 +53,87 @@ public class BlackjackTable {
         dealer.deal(player1.getHand());
         dealer.deal(dealer.getHand());
         dealer.deal(dealer.getHand());
-        if(player1.getHand().isBlackjack()){
+        if (player1.getHand().isBlackjack()) {
+
             System.out.println("You win");
             menu();
         }
     }
 
-    public void displayHand() {
-        System.out.println(player1.getHand());
-        System.out.println(player1.getHand().getHandValue());
-    }
+    //LOGIC OF GAME
+    public void play() {
+        boolean selection = false;
+        while (!selection) {
 
-    public void play(){
-        Scanner kb = new Scanner(System.in);
-        System.out.println("What would you like to do?");
-        System.out.println("┍-----------┑");
-        System.out.println("| 1) - Hit  |");
-        System.out.println("| 2) - Hold |");
-        System.out.println("┗-----------┙");
-        System.out.print("choice: ");
+            try {
+                Scanner kb = new Scanner(System.in);
+                System.out.println("What would you like to do?");
+                System.out.println("┍-----------┑");
+                System.out.println("| 1) - Hit  |");
+                System.out.println("| 2) - Stay |");
+                System.out.println("┗-----------┙");
+                System.out.print("choice: ");
 
-        try{
-            if(kb.nextInt() == 1){
-                dealer.deal(player1.getHand());
+                switch (kb.next()) {
+                    case "1":
+                        if (!player1.getHand().isBust()) {
+                            if (player1.getHand().getHandValue() < 21) {
+                                dealer.deal(player1.getHand());
+                                player1.displayHand();
+                                dealer.displayDealerHand();
+                            } else {
+                                System.out.println("You are at 21. Hitting again would put you at bust.");
+                                selection = true;
+                            }
+                        }
+                        if (player1.getHand().isBust()) {
+                            System.out.println("You bust. Better luck next time");
+                            player1.getHand().clearHand();
+                            menu();
+                        }
+                        break;
+                    case "2":
+                        selection = true;
+                        break;
+                    default:
+                        System.out.println("Invalid input! Please try again");
+
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input! Please try again");
             }
-        }catch (Exception e){
-            System.out.println("Invalid input! Please try again");
+            System.out.println(" ");
         }
+
+//          START OF DEALER TURN
+        while (dealer.getHand().getHandValue() <= 17) {
+            System.out.println(dealer.getHand());
+            System.out.println(dealer.getHand().getHandValue());
+            dealer.deal(dealer.getHand());
+        }
+        if (dealer.getHand().isBust()) {
+            System.out.println(dealer.getHand());
+            System.out.println(dealer.getHand().getHandValue());
+            System.out.println("You win!!!");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
+            menu();
+        } else if (player1.getHand().getHandValue() > dealer.getHand().getHandValue()) {
+            System.out.println(dealer.getHand());
+            System.out.println(dealer.getHand().getHandValue());
+            System.out.println("You win!!!");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
+            menu();
+        } else {
+            System.out.println(dealer.getHand());
+            System.out.println(dealer.getHand().getHandValue());
+            System.out.println("Dealer wins, better luck next time.");
+            player1.getHand().clearHand();
+            dealer.getHand().clearHand();
+            menu();
+        }
+
     }
+
 }

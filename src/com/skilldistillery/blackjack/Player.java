@@ -3,10 +3,17 @@ package com.skilldistillery.blackjack;
 import java.util.Objects;
 
 public class Player {
-   private BlackjackHand playerHand;
+    private BlackjackHand playerHand;
 
-    public Player(){
+//          CONSTRUCTOR
+    public Player() {
         playerHand = new BlackjackHand();
+    }
+
+//      METHODS
+    public void displayHand() {
+        System.out.println(getHand());
+        System.out.println(getHand().getHandValue());
     }
 
     public BlackjackHand getHand() {
@@ -26,13 +33,6 @@ public class Player {
         return Objects.hash(playerHand);
     }
 
-    public BlackjackHand getPlayerHand() {
-        return playerHand;
-    }
-
-    public void setPlayerHand(BlackjackHand playerHand) {
-        this.playerHand = playerHand;
-    }
 
     @Override
     public String toString() {
