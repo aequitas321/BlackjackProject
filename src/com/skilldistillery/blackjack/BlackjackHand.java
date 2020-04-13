@@ -1,6 +1,9 @@
 package com.skilldistillery.blackjack;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.skilldistillery.blackjack.Rank.ACE;
 
 public class BlackjackHand extends Hand {
 
@@ -27,6 +30,12 @@ public class BlackjackHand extends Hand {
         for (Card card : hand) {
             value += card.getValue();
         }
+        for (Card card : hand) {
+            if (card.getRank().equals(ACE) && value > 21) {
+                value -= 10;
+            }
+        }
         return value;
     }
+
 }
